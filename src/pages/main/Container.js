@@ -14,10 +14,8 @@ const enhancer = compose(
           if(!contentValue) {
             return
           }
-          console.log('submitted:', content);
           try {
             const response = await axios.post('http://localhost:3001/', { content });
-            console.log('response:', response);
             const { data } = response;
             setRows(data);
             setContentValue('');
@@ -25,7 +23,7 @@ const enhancer = compose(
               setDisabled(true);
             }
           } catch (error) {
-            console.log('ERROR:', error)
+            console.log('ERROR:', error);
             setContentValue('');
           }
       }

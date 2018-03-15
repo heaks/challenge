@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-// let data = ['First one'];
-let data = [1,2,3,4,5,6,7,8,9,10];
+let data = ['First one'];
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -19,7 +18,6 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => res.json(data));
 
 app.post('/', (req, res) => {
-    console.log('body:', req.body);
     const { content } = req.body;
     if(data.length >= 10) {
         res.status(403).send({ error: 'Already contains 10 values' })
