@@ -6,29 +6,28 @@ import App from './App';
 const enhancer = compose(
   withState('rows', 'setRows', []),
   withState('isDisabled', 'setDisabled', false),
+  withState('contentValue', 'setContentValue', ''),
   withHandlers({
-      onSubmit: ({ setRows, setDisabled }) => async e => {
+      onSubmit: ({ setRows, setDisabled, contentValue, setContentValue }) => async e => {
           e.preventDefault();
-          const content = e.target.content.value;
-          if(!content.trim()) {
+          const content = contentValue.trim();
+          if(!contentValue) {
             return
           }
-          e.target.content.value = '';
           console.log('submitted:', content);
-          // const response = await axios.post('http://localhost:3001/', { content });
-          // console.log('response:', response);
-          axios.post('http://localhost:3001/', { content })
-              .then(response => {
-                  console.log('response:', response);
-                  const { data } = response;
-                  setRows(data);
-                  if(data.length >= 10) {
-                    setDisabled(true);
-                  }
-              })
-              .catch(error => {
-                 console.log('error:', error);
-              });
+          try {
+            const response = await axios.post('http://localhost:3001/', { content });
+            console.log('response:', response);
+            const { data } = response;
+            setRows(data);
+            setContentValue('');
+            if(data.length >= 10) {
+              setDisabled(true);
+            }
+          } catch (error) {
+            console.log('ERROR:', error)
+            setContentValue('');
+          }
       }
   }),
   lifecycle({
