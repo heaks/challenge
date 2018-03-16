@@ -21,6 +21,9 @@ app.get('/', (req, res) => res.json(data));
 
 app.post('/', (req, res) => {
   const { content } = req.body;
+  if(!content) {
+    res.status(403).send({ error: 'Content is empty' });
+  }
   if(data.length < 10) {
     data.push(content);
     res.send(data);
