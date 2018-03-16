@@ -11,7 +11,7 @@ const enhancer = compose(
     onSubmit: ({ setRows, setDisabled, contentValue, setContentValue }) => async e => {
       e.preventDefault();
       const content = contentValue.trim();
-      if(!contentValue) {
+      if(!content) {
         return
       }
       try {
