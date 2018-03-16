@@ -6,7 +6,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-const ContentTable = ({ rows }) =>
+const ContentTable = ({ rows }) => (
   <Table>
     <TableBody
       displayRowCheckbox={false}
@@ -18,6 +18,7 @@ const ContentTable = ({ rows }) =>
         </TableRow>
       )}
     </TableBody>
-  </Table>;
+  </Table>
+);
 
 export default ContentTable;

@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const Form = ({ onSubmit, isDisabled, contentValue, setContentValue }) =>
+const Form = ({ onSubmit, isDisabled, contentValue, setContentValue }) => (
   <div>
     <form onSubmit={onSubmit}>
       <TextField
@@ -17,6 +17,7 @@ const Form = ({ onSubmit, isDisabled, contentValue, setContentValue }) =>
         disabled={isDisabled}
       />
     </form>
-  </div>;
+  </div>
+);
 
 export default Form;
